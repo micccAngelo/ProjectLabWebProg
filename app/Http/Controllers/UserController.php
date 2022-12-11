@@ -16,11 +16,13 @@ class UserController extends Controller
 
     public function register_action(Request $request){
         $request -> validate([
-            'name' => 'required',
-            'email' => 'required|unique:tb_user',
-            'password' => 'required',
+            'name' => 'required|min:3',
+            'email' => 'email|required|unique:tb_user',
+            'password' => 'required|min:5',
             'password_confirmation' => 'required|same:password',
-            'address' => 'required'
+            'address' => 'required|min:5',
+            'Gender' => 'accepted',
+            'Term of Service' => 'accepted'
         ]);
 
         $user = new User([
